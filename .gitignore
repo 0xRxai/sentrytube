@@ -12,3 +12,6 @@ sentryhub/.env.generated
 SENTRYTUBE_CHAT_TRANSCRIPT.md
 *.zip
 npm-sentryhub.log
+
+demo/norm/
+demo/list.txt
