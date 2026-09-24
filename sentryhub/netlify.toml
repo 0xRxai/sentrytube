@@ -1,0 +1,12 @@
+# Netlify config for SentryHub (Next.js 14 App Router).
+# Netlify auto-installs the Next.js runtime (@netlify/plugin-nextjs), which
+# handles SSR, route handlers, and middleware as serverless/edge functions.
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

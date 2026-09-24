@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.local
+.env.generated
+.DS_Store
+**/.expo/
+dist/
+.next/
+sentryhub/.env.local
+sentryhub/.env.generated
+SENTRYTUBE_CHAT_TRANSCRIPT.md
+*.zip

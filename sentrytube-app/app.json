@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "SentryTube",
+    "slug": "sentrytube",
+    "scheme": "sentrytube",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sentrytube.app"
+    },
+    "android": {
+      "package": "com.sentrytube.app"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": ["expo-router"],
+    "extra": {
+      "supabaseUrl": "https://xcyqxqgmzeesduqerrmc.supabase.co",
+      "supabaseAnonKey": "sb_publishable_T1OtbCCQ4AQYu8zbHnMj5w_iJRCQkxG",
+      "apiBaseUrl": "https://sentrytube.com"
+    }
+  }
+}
