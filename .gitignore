@@ -6,7 +6,9 @@ node_modules/
 **/.expo/
 dist/
 .next/
+.npm-cache/
 sentryhub/.env.local
 sentryhub/.env.generated
 SENTRYTUBE_CHAT_TRANSCRIPT.md
 *.zip
+npm-sentryhub.log

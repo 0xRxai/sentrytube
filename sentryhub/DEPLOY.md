@@ -1,12 +1,33 @@
 # SentryHub — Account Setup & Deploy Walkthrough
 
+## Current path (2026-09 fix)
+
+Production at `sentrytube.com` is **down (403)**. Local Netlify CLI deploys failed earlier.
+Do this in order:
+
+1. **Supabase SQL Editor** → paste & run  
+   `supabase/migrations/20260924_social.sql` (follows + bookmarks).
+2. **GitHub:** `gh auth refresh` then push this repo (`main`).
+3. **Host the API** (pick one):
+   - **Netlify:** connect the GitHub repo to existing site `sentryhub`, base dir `sentryhub/`, build `npm run build`, Node 20. Env vars already on the site.
+   - **Render:** Blueprint `../render.yaml` (rootDir `sentryhub`, health `/api/health`). Set env vars from `.env.local.example`.
+4. Confirm `GET https://<your-api>/api/health` returns `{ ok: true }`.
+5. Point **Mux webhook** → `https://<your-api>/api/webhooks/mux`  
+   and **Supabase DB webhook** on `notifications` → `/api/webhooks/notification` with header `x-webhook-secret`.
+6. Set Expo `app.json → extra.apiBaseUrl` to that API origin.
+7. If browser signup fails: use Supabase **legacy anon JWT** in both Next env and Expo `extra.supabaseAnonKey`.
+
+Product UI = **Expo** (`sentrytube-app`) for iOS / Android / web. Keep Next.js for API + optional admin.
+
+---
+
 Follow these in order. There are two phases:
 
 - **Phase A — Run it locally** (prove it works end to end on your machine).
-- **Phase B — Deploy to Vercel** (put it live on the internet).
+- **Phase B — Deploy** (put the API live; Expo talks to it).
 
 Estimated time: ~45–60 min the first time. You'll create 3 free accounts
-(Supabase, Mux, Vercel) and optionally a 4th (Resend, for email).
+(Supabase, Mux, host) and optionally a 4th (Resend, for email).
 
 > 🔑 I already generated your push keys and webhook secret — they're in
 > **`.env.generated`** in this project. You'll paste those in below; you do NOT
@@ -20,12 +41,13 @@ Install if you don't have them:
 
 - **Node.js 18.18+** — https://nodejs.org (LTS)
 - **Git** — https://git-scm.com
-- A **GitHub account** — https://github.com (needed for Vercel)
+- A **GitHub account** — https://github.com
 
 Open a terminal in the project folder and install dependencies:
 
 ```bash
-npm install
+cd sentryhub && npm install
+cd ../sentrytube-app && npm install
 ```
 
 ---
